@@ -27,11 +27,12 @@
   </div>
   <script>
     // Function to handle the device motion event and update the accelerometer data
-    function GetAccelerometer(event) {
+    function GetAccelerometer() {
       DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
           window.addEventListener('deviceorientation', (event) => {
-            return event.beta, event.gamma;
+            var s = event.beta + "," + event.gamma;
+            return s;
           });
         }
       });

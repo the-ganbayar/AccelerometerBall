@@ -30,17 +30,19 @@
     function GetAccelerometer(event) {
       DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
-          console.log("accelerometer permission granted");
-          // Get the acceleration data
-          const accelerationX = event.accelerationIncludingGravity.x;
-          const accelerationY = event.accelerationIncludingGravity.y;
-          const accelerationZ = event.accelerationIncludingGravity.z;
 
-          // Call a function to handle the accelerometer data
-          // For example, you can pass the values to another function or update the UI.
-          console.log(accelerationX + "-" + accelerationY);
-          return accelerationX, accelerationY;
-          // Do stuff here
+          window.addEventListener('deviceorientation', (event) => {
+            // Expose each orientation angle in a more readable way
+            rotation_degrees = event.alpha;
+            frontToBack_degrees = event.beta;
+            leftToRight_degrees = event.gamma;
+
+            // Update velocity according to how tilted the phone is
+            // Since phones are narrower than they are long, double the increase to the x velocity
+            vx = vx + leftToRight_degrees * updateRate;
+            vy = vy + frontToBack_degrees * updateRate;
+            return vx, vy;
+          });
         }
       });
       // handleAccelerometerData(accelerationX, accelerationY, accelerationZ);

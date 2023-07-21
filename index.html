@@ -26,26 +26,23 @@
     </div>
   </div>
   <script>
-
-    if (window.DeviceMotionEvent) {
-      // Listen for the device motion event and call the handleMotion function
-      window.addEventListener('devicemotion', GetAccelerometer, false);
-    } else {
-      // DeviceMotionEvent is not supported
-      alert('DeviceMotionEvent is not supported in this browser.');
-    }
-
     // Function to handle the device motion event and update the accelerometer data
     function GetAccelerometer(event) {
-      // Get the acceleration data
-      const accelerationX = event.accelerationIncludingGravity.x;
-      const accelerationY = event.accelerationIncludingGravity.y;
-      const accelerationZ = event.accelerationIncludingGravity.z;
+      DeviceMotionEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+          console.log("accelerometer permission granted");
+          // Get the acceleration data
+          const accelerationX = event.accelerationIncludingGravity.x;
+          const accelerationY = event.accelerationIncludingGravity.y;
+          const accelerationZ = event.accelerationIncludingGravity.z;
 
-      // Call a function to handle the accelerometer data
-      // For example, you can pass the values to another function or update the UI.
-      console.log(accelerationX + "-" + accelerationY);
-      return accelerationX, accelerationY;
+          // Call a function to handle the accelerometer data
+          // For example, you can pass the values to another function or update the UI.
+          console.log(accelerationX + "-" + accelerationY);
+          return accelerationX, accelerationY;
+          // Do stuff here
+        }
+      });
       // handleAccelerometerData(accelerationX, accelerationY, accelerationZ);
     }
 

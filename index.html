@@ -30,18 +30,8 @@
     function GetAccelerometer(event) {
       DeviceMotionEvent.requestPermission().then(response => {
         if (response == 'granted') {
-
           window.addEventListener('deviceorientation', (event) => {
-            // Expose each orientation angle in a more readable way
-            rotation_degrees = event.alpha;
-            frontToBack_degrees = event.beta;
-            leftToRight_degrees = event.gamma;
-
-            // Update velocity according to how tilted the phone is
-            // Since phones are narrower than they are long, double the increase to the x velocity
-            vx = vx + leftToRight_degrees * updateRate;
-            vy = vy + frontToBack_degrees * updateRate;
-            return vx, vy;
+            return event.beta, event.gamma;
           });
         }
       });

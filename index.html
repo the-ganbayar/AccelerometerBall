@@ -27,17 +27,17 @@
   </div>
   <script>
     // Function to handle the device motion event and update the accelerometer data
-    function GetAccelerometer() {
-      DeviceMotionEvent.requestPermission().then(response => {
-        if (response == 'granted') {
-          window.addEventListener('deviceorientation', (event) => {
-            var s = event.beta + "," + event.gamma;
-            return s;
-          });
-        }
-      });
-      // handleAccelerometerData(accelerationX, accelerationY, accelerationZ);
-    }
+    // function GetAccelerometer() {
+    //   DeviceMotionEvent.requestPermission().then(response => {
+    //     if (response == 'granted') {
+    //       window.addEventListener('deviceorientation', (event) => {
+    //         var s = event.beta + "," + event.gamma;
+    //         return s;
+    //       });
+    //     }
+    //   });
+    //   // handleAccelerometerData(accelerationX, accelerationY, accelerationZ);
+    // }
 
 
     var container = document.querySelector("#unity-container");
